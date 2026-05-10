@@ -104,28 +104,33 @@ class JullixApi:
 
     async def get_cloud_battery_detail(self) -> dict:
         data = await self._get_cloud(ENDPOINT_CLOUD_BATTERY_DETAIL)
-        items = data.get("data", [])
-        return items[0] if items else {}
+        return self._extract_first(data)
 
     async def get_cloud_charger_detail(self) -> dict:
         data = await self._get_cloud(ENDPOINT_CLOUD_CHARGER_DETAIL)
-        items = data.get("data", [])
-        return items[0] if items else {}
+        return self._extract_first(data)
 
     async def get_cloud_grid_detail(self) -> dict:
         data = await self._get_cloud(ENDPOINT_CLOUD_GRID_DETAIL)
-        items = data.get("data", [])
-        return items[0] if items else {}
+        return self._extract_first(data)
 
     async def get_cloud_solar_detail(self) -> dict:
         data = await self._get_cloud(ENDPOINT_CLOUD_SOLAR_DETAIL)
-        items = data.get("data", [])
-        return items[0] if items else {}
+        return self._extract_first(data)
 
     async def get_cloud_home_detail(self) -> dict:
         data = await self._get_cloud(ENDPOINT_CLOUD_HOME_DETAIL)
-        items = data.get("data", [])
-        return items[0] if items else {}
+        return self._extract_first(data)
+
+    @staticmethod
+    def _extract_first(data: dict) -> dict:
+        """Safely extract first item from data, whether it's a list or dict."""
+        payload = data.get("data", {})
+        if isinstance(payload, list):
+            return payload[0] if payload else {}
+        if isinstance(payload, dict):
+            return payload
+        return {}
 
     # ------------------------------------------------------------------
     # Test connectivity
