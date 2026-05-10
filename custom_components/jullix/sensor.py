@@ -36,11 +36,7 @@ class JullixSensorEntityDescription(SensorEntityDescription):
     available_fn: Callable[[dict], bool] = lambda d: True
 
 
-# ---------------------------------------------------------------------------
-# Sensor definitions
-# ---------------------------------------------------------------------------
-
-LOCAL_SENSORS: list[JullixSensorEntityDescription] = [
+SENSORS: list[JullixSensorEntityDescription] = [
     # Solar
     JullixSensorEntityDescription(
         key="solar_power",
@@ -265,68 +261,6 @@ LOCAL_SENSORS: list[JullixSensorEntityDescription] = [
     ),
 ]
 
-CLOUD_SENSORS: list[JullixSensorEntityDescription] = [
-    JullixSensorEntityDescription(
-        key="cloud_grid_power",
-        name="Grid Power (Cloud)",
-        native_unit_of_measurement=UnitOfPower.KILO_WATT,
-        device_class=SensorDeviceClass.POWER,
-        state_class=SensorStateClass.MEASUREMENT,
-        icon="mdi:transmission-tower",
-        value_fn=lambda d: d.get("cloud_powers", {}).get("grid"),
-        available_fn=lambda d: bool(d.get("cloud_powers")),
-    ),
-    JullixSensorEntityDescription(
-        key="cloud_solar_power",
-        name="Solar Power (Cloud)",
-        native_unit_of_measurement=UnitOfPower.KILO_WATT,
-        device_class=SensorDeviceClass.POWER,
-        state_class=SensorStateClass.MEASUREMENT,
-        icon="mdi:solar-power",
-        value_fn=lambda d: d.get("cloud_powers", {}).get("solar"),
-        available_fn=lambda d: bool(d.get("cloud_powers")),
-    ),
-    JullixSensorEntityDescription(
-        key="cloud_home_power",
-        name="Home Power (Cloud)",
-        native_unit_of_measurement=UnitOfPower.KILO_WATT,
-        device_class=SensorDeviceClass.POWER,
-        state_class=SensorStateClass.MEASUREMENT,
-        icon="mdi:home-lightning-bolt",
-        value_fn=lambda d: d.get("cloud_powers", {}).get("home"),
-        available_fn=lambda d: bool(d.get("cloud_powers")),
-    ),
-    JullixSensorEntityDescription(
-        key="cloud_battery_power",
-        name="Battery Power (Cloud)",
-        native_unit_of_measurement=UnitOfPower.KILO_WATT,
-        device_class=SensorDeviceClass.POWER,
-        state_class=SensorStateClass.MEASUREMENT,
-        icon="mdi:battery-charging",
-        value_fn=lambda d: d.get("cloud_powers", {}).get("battery"),
-        available_fn=lambda d: bool(d.get("cloud_powers")),
-    ),
-    JullixSensorEntityDescription(
-        key="cloud_car_power",
-        name="EV Power (Cloud)",
-        native_unit_of_measurement=UnitOfPower.KILO_WATT,
-        device_class=SensorDeviceClass.POWER,
-        state_class=SensorStateClass.MEASUREMENT,
-        icon="mdi:ev-station",
-        value_fn=lambda d: d.get("cloud_powers", {}).get("car"),
-        available_fn=lambda d: bool(d.get("cloud_powers")),
-    ),
-    JullixSensorEntityDescription(
-        key="cloud_battery_soc",
-        name="Battery SOC (Cloud)",
-        native_unit_of_measurement=PERCENTAGE,
-        device_class=SensorDeviceClass.BATTERY,
-        state_class=SensorStateClass.MEASUREMENT,
-        value_fn=lambda d: d.get("cloud_battery", {}).get("battery", {}).get("soc"),
-        available_fn=lambda d: bool(d.get("cloud_battery")),
-    ),
-]
-
 
 async def async_setup_entry(
     hass: HomeAssistant,
@@ -335,20 +269,10 @@ async def async_setup_entry(
 ) -> None:
     """Set up Jullix sensors from config entry."""
     coordinator: JullixCoordinator = hass.data[DOMAIN][entry.entry_id]
-    use_cloud = entry.data.get("use_cloud", False)
-
-    entities = [
+    async_add_entities(
         JullixSensorEntity(coordinator, description, entry)
-        for description in LOCAL_SENSORS
-    ]
-
-    if use_cloud:
-        entities += [
-            JullixSensorEntity(coordinator, description, entry)
-            for description in CLOUD_SENSORS
-        ]
-
-    async_add_entities(entities)
+        for description in SENSORS
+    )
 
 
 class JullixSensorEntity(CoordinatorEntity[JullixCoordinator], SensorEntity):

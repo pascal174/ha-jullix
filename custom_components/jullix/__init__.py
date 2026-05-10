@@ -7,13 +7,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .api import JullixApi
 from .coordinator import JullixCoordinator
-from .const import (
-    DOMAIN,
-    CONF_LOCAL_IP,
-    CONF_INSTALL_ID,
-    CONF_API_TOKEN,
-    CONF_USE_CLOUD,
-)
+from .const import DOMAIN, CONF_LOCAL_IP
 
 PLATFORMS = ["sensor", "binary_sensor"]
 
@@ -25,16 +19,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     api = JullixApi(
         session=session,
         local_ip=entry.data[CONF_LOCAL_IP],
-        install_id=entry.data.get(CONF_INSTALL_ID),
-        api_token=entry.data.get(CONF_API_TOKEN),
-        use_cloud=entry.data.get(CONF_USE_CLOUD, False),
     )
 
-    coordinator = JullixCoordinator(
-        hass=hass,
-        api=api,
-        use_cloud=entry.data.get(CONF_USE_CLOUD, False),
-    )
+    coordinator = JullixCoordinator(hass=hass, api=api)
 
     await coordinator.async_config_entry_first_refresh()
 
