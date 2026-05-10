@@ -1,0 +1,30 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Jullix EMS — Lokale verbinding",
+        "description": "Vul het IP-adres in van je Jullix gateway op het lokale netwerk.",
+        "data": {
+          "local_ip": "IP-adres van de Jullix"
+        }
+      },
+      "cloud": {
+        "title": "Jullix EMS — Cloud (optioneel)",
+        "description": "Voeg je API-token toe voor toegang tot cloud-data. Je vindt deze token onder Profiel → API-tokens op mijn.jullix.be.",
+        "data": {
+          "use_cloud": "Cloud-data inschakelen",
+          "install_id": "Installatie-ID (bijv. 1269)",
+          "api_token": "API-token (Bearer token)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Kan geen verbinding maken met de Jullix op het opgegeven IP-adres.",
+      "cloud_fields_required": "Installatie-ID en API-token zijn verplicht bij cloud-gebruik.",
+      "cloud_auth_failed": "Cloud-authenticatie mislukt. Controleer je installatie-ID en token."
+    },
+    "abort": {
+      "already_configured": "Jullix EMS is al geconfigureerd."
+    }
+  }
+}
