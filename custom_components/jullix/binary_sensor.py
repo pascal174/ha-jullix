@@ -92,8 +92,8 @@ class JullixBinarySensorEntity(CoordinatorEntity[JullixCoordinator], BinarySenso
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, entry.entry_id)},
             name="Jullix EMS",
-            manufacturer="Jullix",
-            model="EMS Gateway (Community Integration)",
+            manufacturer="Innovoltus",
+            model="julix EMS Gateway (Community Integration)",
             configuration_url="https://github.com/pascal174/ha-jullix",
         )
 

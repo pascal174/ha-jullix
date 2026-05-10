@@ -292,9 +292,9 @@ class JullixSensorEntity(CoordinatorEntity[JullixCoordinator], SensorEntity):
         self._attr_unique_id = f"{entry.entry_id}_{description.key}"
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, entry.entry_id)},
-            name="Jullix EMS",
-            manufacturer="Jullix",
-            model="EMS Gateway (Community Integration)",
+            name="Innovoltus Jullix EMS",
+            manufacturer="Innovoltus",
+            model="Jullix EMS Gateway (Community Integration)",
             configuration_url="https://github.com/pascal174/ha-jullix",
         )
 
