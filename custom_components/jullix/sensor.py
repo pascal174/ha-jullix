@@ -370,8 +370,8 @@ class JullixSensorEntity(CoordinatorEntity[JullixCoordinator], SensorEntity):
             identifiers={(DOMAIN, entry.entry_id)},
             name="Jullix EMS",
             manufacturer="Jullix",
-            model="EMS Gateway",
-            configuration_url="https://mijn.jullix.be",
+            model="EMS Gateway (Community Integration)",
+            configuration_url="https://github.com/pascal174/ha-jullix",
         )
 
     @property

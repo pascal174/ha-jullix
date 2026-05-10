@@ -1,18 +1,22 @@
 # Jullix EMS — Home Assistant Custom Integration
 
-Een HACS-compatibele custom integration voor het Jullix energiebeheersysteem.
+> ⚠️ **Disclaimer:** This is an unofficial, community-made integration.
+> It is **not** affiliated with, endorsed by, or supported by Jullix.
+> For official Jullix support, visit [mijn.jullix.be](https://mijn.jullix.be).
 
-## Functionaliteit
+A HACS-compatible custom integration for the Jullix energy management system.
 
-- **Lokale polling** (geen internet nodig) van de Jullix gateway
-- **Optionele cloud-data** via de Jullix platform-API
-- Alle entities gegroepeerd onder één **Jullix EMS** device
-- Configuratie volledig via de UI (geen YAML nodig)
+## Features
 
-## Sensors (lokaal)
+- **Local polling** — fast and reliable, no internet required
+- **Optional cloud data** — additional details via the Jullix platform API
+- All entities grouped under one **Jullix EMS** device
+- Fully configurable via the UI — no YAML required
 
-| Sensor | Eenheid |
-|--------|---------|
+## Local Sensors
+
+| Sensor | Unit |
+|--------|------|
 | Solar Power | W |
 | Solar Energy Total | kWh |
 | Battery Power | W |
@@ -23,45 +27,57 @@ Een HACS-compatibele custom integration voor het Jullix energiebeheersysteem.
 | Grid Power In | W |
 | Grid Power Out | W |
 | Net Power | W |
-| Energy Import T1/T2 | kWh |
-| Energy Export T1/T2 | kWh |
-| Voltage L1/L2/L3 | V |
+| Energy Import T1 | kWh |
+| Energy Import T2 | kWh |
+| Energy Export T1 | kWh |
+| Energy Export T2 | kWh |
+| Voltage L1 | V |
+| Voltage L2 | V |
+| Voltage L3 | V |
 | Water Usage | m³ |
 | EV Charger Power | W |
 | EV Battery SOC | % |
 | EV Charger Temperature | °C |
 | EV Max Current | A |
-| EV Charger State | - |
+| EV Charger State | — |
 
-## Binary sensors (lokaal)
+## Local Binary Sensors
 
-| Sensor | Klasse |
-|--------|--------|
+| Sensor | Class |
+|--------|-------|
 | EV Charger Occupied | occupancy |
 | EV Three Phase Active | power |
 | Battery Fault | problem |
 | Solar Fault | problem |
 
-## Installatie
+## Installation
 
 ### Via HACS
-1. Voeg deze repository toe als custom repository in HACS
-2. Installeer "Jullix EMS"
-3. Herstart Home Assistant
+1. Add this repository as a custom repository in HACS
+2. Install "Jullix EMS"
+3. Restart Home Assistant
 
-### Manueel
-1. Kopieer de map `custom_components/jullix` naar je HA `custom_components` map
-2. Herstart Home Assistant
+### Manual
+1. Copy the `custom_components/jullix` folder to your HA `custom_components` directory
+2. Restart Home Assistant
 
-## Configuratie
+## Configuration
 
-1. Ga naar **Instellingen → Apparaten & diensten → Integratie toevoegen**
-2. Zoek op "Jullix"
-3. Vul het IP-adres in van je Jullix gateway (standaard: `192.168.2.150`)
-4. Optioneel: schakel cloud-data in en vul je installatie-ID en API-token in
-   - Token aanmaken via [mijn.jullix.be](https://mijn.jullix.be) → Profiel → API-tokens
+1. Go to **Settings → Devices & Services → Add Integration**
+2. Search for "Jullix"
+3. Enter the IP address of your Jullix gateway (default: `192.168.2.150`)
+4. Optional: enable cloud data and enter your installation ID and API token
+   - Create a token at [mijn.jullix.be](https://mijn.jullix.be) → Profile → API tokens
 
-## Vereisten
+## Requirements
 
-- Home Assistant 2024.1 of nieuwer
-- Jullix gateway bereikbaar op het lokale netwerk
+- Home Assistant 2024.1 or newer
+- Jullix gateway reachable on your local network
+
+## Contributing
+
+Pull requests are welcome! Please open an issue first to discuss what you would like to change.
+
+## License
+
+[MIT](LICENSE)
