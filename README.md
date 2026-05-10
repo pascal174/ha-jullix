@@ -8,8 +8,7 @@ A HACS-compatible custom integration for the Jullix energy management system.
 
 ## Features
 
-- **Local polling** — fast and reliable, no internet required
-- **Optional cloud data** — additional details via the Jullix platform API
+- **Local polling only** — fast, reliable, and no internet required
 - All entities grouped under one **Jullix EMS** device
 - Fully configurable via the UI — no YAML required
 
@@ -66,8 +65,8 @@ A HACS-compatible custom integration for the Jullix energy management system.
 1. Go to **Settings → Devices & Services → Add Integration**
 2. Search for "Jullix"
 3. Enter the IP address of your Jullix gateway (default: `192.168.2.150`)
-4. Optional: enable cloud data and enter your installation ID and API token
-   - Create a token at [mijn.jullix.be](https://mijn.jullix.be) → Profile → API tokens
+
+That's it — no tokens, no cloud accounts needed.
 
 ## Requirements
 
