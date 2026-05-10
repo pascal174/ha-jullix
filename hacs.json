@@ -1,6 +1,4 @@
 {
   "name": "Jullix EMS",
-  "domains": ["sensor", "binary_sensor"],
-  "iot_class": "local_polling",
-  "homeassistant": "2024.1.0"
+  "iot_class": "local_polling"
 }

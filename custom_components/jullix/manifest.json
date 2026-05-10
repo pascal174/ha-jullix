@@ -1,12 +1,12 @@
 {
   "domain": "jullix",
   "name": "Jullix EMS",
-  "version": "1.0.0",
-  "documentation": "https://wiki.jullix.be/doku.php?id=nl:faq:integratie",
-  "issue_tracker": "https://github.com/jouwnaam/ha-jullix/issues",
-  "requirements": [],
+  "codeowners": ["@pascal174"],
+  "config_flow": true,
   "dependencies": [],
-  "codeowners": ["@Pascal_Witjes"],
+  "documentation": "https://wiki.jullix.be/doku.php?id=nl:faq:integratie",
   "iot_class": "local_polling",
-  "config_flow": true
+  "issue_tracker": "https://github.com/pascal174/ha-jullix/issues",
+  "requirements": [],
+  "version": "1.0.0"
 }
